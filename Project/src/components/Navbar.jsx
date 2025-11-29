@@ -37,7 +37,8 @@ const Navbar = () => (
       }}
     >
       {[
-       
+        { path: "/login", label: "Login" },
+        { path: "/signup", label: "Signup" },
         { path: "/", label: "Home" },
         { path: "/monuments", label: "Monuments" },
         { path: "/festivals", label: "Festivals" },
