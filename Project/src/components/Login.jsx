@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [form, setForm] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -9,7 +11,20 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    alert(`Login attempted:\nEmail: ${form.email}\nPassword: ${form.password}`);
+
+    // Simple check (you can replace with real backend)
+    if (form.email && form.password) {
+      // Store login in localStorage
+      localStorage.setItem("isAuthenticated", "true");
+
+      // Update App state
+      setIsAuthenticated(true);
+
+      // Redirect to home
+      navigate("/");
+    } else {
+      alert("Please enter valid credentials");
+    }
   };
 
   return (
@@ -48,16 +63,16 @@ const styles = {
     border: "1px solid #ccc",
     borderRadius: "8px",
     boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-    textAlign: "center",
+    textAlign: "center"
   },
   form: {
     display: "flex",
     flexDirection: "column",
-    gap: "1rem",
+    gap: "1rem"
   },
   input: {
     padding: "0.75rem",
-    fontSize: "1rem",
+    fontSize: "1rem"
   },
   button: {
     padding: "0.75rem",
@@ -65,8 +80,8 @@ const styles = {
     backgroundColor: "#007bff",
     color: "#fff",
     border: "none",
-    cursor: "pointer",
-  },
+    cursor: "pointer"
+  }
 };
 
 export default Login;

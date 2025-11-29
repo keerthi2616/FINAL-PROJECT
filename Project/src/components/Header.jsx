@@ -1,17 +1,24 @@
+// src/components/Header.jsx
 import React from "react";
 
-const Header = () => (
-  <header style={{
-    backgroundColor: "#ffcc00",
-    color: "#3b3b58",
-    padding: "2rem",
-    textAlign: "center",
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    boxShadow: "0 2px 6px rgba(0,0,0,0.1)"
-  }}>
-    <h1 style={{ margin: 0, fontSize: "2.5rem" }}>Welcome to Incredible India 🇮🇳</h1>
-    <p style={{ margin: 0, fontSize: "1.2rem", fontWeight: 600 }}>Explore Indian Culture, Monuments, Festivals & Arts</p>
-  </header>
-);
+const Header = () => {
+  return (
+    <header
+      style={{
+        backgroundColor: "#4a6cff",
+        color: "#fff",
+        padding: "30px 40px",
+        borderRadius: "8px",
+        textAlign: "center",
+        marginBottom: "20px",
+      }}
+    >
+      <h1 style={{ fontSize: "2.5em", margin: 0 }}>🌟 Cultural Explorer</h1>
+      <p style={{ fontSize: "1.2em", marginTop: "10px" }}>
+        Discover Monuments, Festivals, and Local Art & Craft
+      </p>
+    </header>
+  );
+};
 
 export default Header;

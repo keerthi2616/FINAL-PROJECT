@@ -1,76 +1,56 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = () => (
-  <nav
-    style={{
-      backgroundColor: "#3b3b58",
-      padding: "1rem 2rem",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      boxShadow: "0 3px 6px rgba(0,0,0,0.1)",
-      flexWrap: "wrap",
-    }}
-  >
-    {/* Brand / Logo */}
-    <div
-      style={{
-        fontWeight: "bold",
-        fontSize: "1.5rem",
-        color: "#ffcc00",
-        userSelect: "none",
-      }}
-    >
-      🇮🇳 Incredible India
-    </div>
+const Navbar = ({ setIsAuthenticated }) => {
+  const navigate = useNavigate();
+  const userRole = localStorage.getItem("userRole");
 
-    {/* Navigation Links */}
-    <ul
+  const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("currentUser");
+    setIsAuthenticated(false);
+    navigate("/login");
+  };
+
+  return (
+    <nav
       style={{
-        listStyle: "none",
         display: "flex",
-        gap: "1.5rem",
-        margin: 0,
-        padding: 0,
+        justifyContent: "center",
+        gap: "20px",
+        marginBottom: "30px",
         flexWrap: "wrap",
+        fontWeight: "bold"
       }}
     >
-      {[
-        { path: "/login", label: "Login" },
-        { path: "/signup", label: "Signup" },
-        { path: "/", label: "Home" },
-        { path: "/monuments", label: "Monuments" },
-        { path: "/festivals", label: "Festivals" },
-        { path: "/art-craft", label: "Art & Craft" },
-        { path: "/contact", label: "Contact" },
-      ].map(({ path, label }) => (
-        <li key={path}>
-          <Link
-            to={path}
-            style={{
-              color: "white",
-              textDecoration: "none",
-              fontWeight: 500,
-              padding: "0.3rem 0.6rem",
-              borderRadius: "4px",
-              transition: "background-color 0.3s ease, color 0.3s ease",
-            }}
-            onMouseOver={(e) => {
-              e.target.style.backgroundColor = "#ffcc00";
-              e.target.style.color = "#3b3b58";
-            }}
-            onMouseOut={(e) => {
-              e.target.style.backgroundColor = "transparent";
-              e.target.style.color = "white";
-            }}
-          >
-            {label}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </nav>
-);
+      <Link to="/">Home</Link>
+      <Link to="/monuments">Monuments</Link>
+      <Link to="/festivals">Festivals</Link>
+      <Link to="/art-craft">Art & Craft</Link>
+      {userRole !== "admin" && <Link to="/quiz">🎯 Quiz</Link>}
+      <Link to="/contact">Contact</Link>
+      {userRole === "admin" ? (
+        <Link to="/admin-dashboard" style={{ color: "#dc3545", fontWeight: "bold" }}>🔐 Admin Panel</Link>
+      ) : (
+        <Link to="/user-dashboard">👤 My Profile</Link>
+      )}
+      <button 
+        onClick={handleLogout} 
+        style={{ 
+          backgroundColor: "#646cff", 
+          color: "#fff", 
+          border: "none", 
+          padding: "5px 12px", 
+          borderRadius: "5px",
+          cursor: "pointer",
+          fontWeight: "bold"
+        }}
+      >
+        Logout
+      </button>
+    </nav>
+  );
+};
 
 export default Navbar;
