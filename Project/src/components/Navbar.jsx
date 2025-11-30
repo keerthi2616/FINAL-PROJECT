@@ -28,6 +28,7 @@ const Navbar = ({ setIsAuthenticated }) => {
       <Link to="/monuments">Monuments</Link>
       <Link to="/festivals">Festivals</Link>
       <Link to="/art-craft">Art & Craft</Link>
+      <Link to="/explore-festivals">🎉 Festivals</Link>
       {userRole !== "admin" && <Link to="/quiz">🎯 Quiz</Link>}
       <Link to="/contact">Contact</Link>
       {userRole === "admin" ? (

@@ -15,6 +15,10 @@ import UserDashboard from "./pages/UserDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Traditions from "./pages/Traditions";
+import Gallery from "./pages/Gallery";
+import ExploreMonu from "./pages/ExploreMonu";
+import ExploreFest from "./pages/ExploreFest";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
